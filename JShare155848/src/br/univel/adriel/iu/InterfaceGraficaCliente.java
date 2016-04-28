@@ -1,6 +1,8 @@
 package br.univel.adriel.iu;
 
-public class InterfaceGraficaCliente{
+import javax.swing.JFrame;
+
+public class InterfaceGraficaCliente extends JFrame{
 	
 	
 	
