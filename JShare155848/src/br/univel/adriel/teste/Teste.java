@@ -53,16 +53,16 @@ public class Teste {
 		 * Arquivos
 		 */
 
-		a1.setNome("Show das poderosas");
+		a1.setNome("txt");
 		a1.setTamanho(256);
 
-		a2.setNome("Pablo");
+		a2.setNome("pdf");
 		a2.setTamanho(128);
 
-		a3.setNome("Valesca");
+		a3.setNome("docx");
 		a3.setTamanho(1024);
 
-		a4.setNome("Anita");
+		a4.setNome("sem nome ");
 		a4.setTamanho(2048);
 
 
@@ -99,7 +99,46 @@ public class Teste {
 				System.out.println("\tNome do Arquivos  : " + arquivo.getNome());
 				System.out.println("\tTamanho do Arquivo: " + arquivo.getTamanho());
 				
-				if (arquivo.getNome() == "Pablo") {
+				if (arquivo.getNome() == "txt") {
+					
+					List<Arquivo> listaArquivos = new ArrayList<Arquivo>();
+					Cliente novoCliente = new Cliente();
+					
+					novoCliente.setNome(listaProcura.getKey().getNome());
+					novoCliente.setIp(listaProcura.getKey().getIp());
+					novoCliente.setPorta(listaProcura.getKey().getPorta());
+					
+					listaArquivos.add(arquivo);
+					
+					listaArquivosEncontrados.put(novoCliente, listaArquivos);
+					
+				}else if (arquivo.getNome() == "pdf") {
+					
+					List<Arquivo> listaArquivos = new ArrayList<Arquivo>();
+					Cliente novoCliente = new Cliente();
+					
+					novoCliente.setNome(listaProcura.getKey().getNome());
+					novoCliente.setIp(listaProcura.getKey().getIp());
+					novoCliente.setPorta(listaProcura.getKey().getPorta());
+					
+					listaArquivos.add(arquivo);
+					
+					listaArquivosEncontrados.put(novoCliente, listaArquivos);
+					
+				}else if (arquivo.getNome() == "docx") {
+					
+					List<Arquivo> listaArquivos = new ArrayList<Arquivo>();
+					Cliente novoCliente = new Cliente();
+					
+					novoCliente.setNome(listaProcura.getKey().getNome());
+					novoCliente.setIp(listaProcura.getKey().getIp());
+					novoCliente.setPorta(listaProcura.getKey().getPorta());
+					
+					listaArquivos.add(arquivo);
+					
+					listaArquivosEncontrados.put(novoCliente, listaArquivos);
+					
+				}else if (arquivo.getNome() == "sem nome") {
 					
 					List<Arquivo> listaArquivos = new ArrayList<Arquivo>();
 					Cliente novoCliente = new Cliente();
@@ -113,6 +152,7 @@ public class Teste {
 					listaArquivosEncontrados.put(novoCliente, listaArquivos);
 					
 				}
+				
 				
 				
 				
