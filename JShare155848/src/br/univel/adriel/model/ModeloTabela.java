@@ -44,17 +44,17 @@ public class ModeloTabela extends AbstractTableModel implements TableModel {
 
 			switch (columnIndex) {
 			case 0:
-				return "Usuário";
+				return "USER";
 			case 1:
-				return "IP do Usuário";
+				return "IP";
 			case 2:
-				return "Porta do Usuário";
+				return "Porta";
 			case 3:
-				return "Nome do Arquivo";
+				return "Arquivo";
 			case 4:
-				return "Tamanho do Arquivo";
+				return "Tamanho";
 			}
-			return null;
+			return null;;
 
 		}
 
