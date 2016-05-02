@@ -5,17 +5,18 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
 import br.dagostini.jshare.comum.pojos.Arquivo;
 import br.dagostini.jshare.comun.Cliente;
 
 
-public class TableModel extends AbstractTableModel implements TableModel {
+public class ModeloTabela extends AbstractTableModel implements TableModel {
 
 		private Object[][] matriz;
 		private int linhas;
 
-		public TableModel(Map<Cliente, List<Arquivo>> mapa) {
+		public ModeloTabela(Map<Cliente, List<Arquivo>> mapa) {
 
 			linhas = 0;
 			for (Entry<Cliente, List<Arquivo>> e : mapa.entrySet()) {
