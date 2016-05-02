@@ -54,7 +54,7 @@ public class ModeloTabela extends AbstractTableModel implements TableModel {
 			case 4:
 				return "Tamanho";
 			}
-			return null;;
+			return null;
 
 		}
 
