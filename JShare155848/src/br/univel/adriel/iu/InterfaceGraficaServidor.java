@@ -325,11 +325,13 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 
 	protected void encerrarServidor(){
 
+		JOptionPane.showMessageDialog(this, "O servidor foi desconectado");		
+
 		try {
 			UnicastRemoteObject.unexportObject(this, true);
 			UnicastRemoteObject.unexportObject(registry, true);
 
-			escreverTela("O servidor foi encerrado");
+			escreverTela("O servidor foi encerrado.");
 
 			bloquearBotoes(false);		
 			bloquearCampos(true);
@@ -338,6 +340,9 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		listaClientes            = null;
+		listaArquivosCliente     = null;
 
 	}
 
