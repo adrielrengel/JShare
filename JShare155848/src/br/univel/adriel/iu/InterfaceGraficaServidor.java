@@ -19,6 +19,7 @@ import br.dagostini.jshare.comum.pojos.Arquivo;
 import br.dagostini.jshare.comun.Cliente;
 import br.dagostini.jshare.comun.IServer;
 import br.univel.adriel.util.DateFormat;
+import br.univel.adriel.util.ListarIp;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -58,6 +59,8 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 	private JTextArea txtArea;
 	
 	int flagInicioSevidor = 0;
+	
+	private ListarIp listaIP = new ListarIp();
 
 	/**
 	 * Launch the application.
