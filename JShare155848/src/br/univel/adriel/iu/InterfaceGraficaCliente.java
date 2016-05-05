@@ -189,7 +189,7 @@ public class InterfaceGraficaCliente extends JFrame implements IServer {
 		cbxMeuIP.setModel(new DefaultComboBoxModel<String>(new Vector<String>(lista)));
 		cbxMeuIP.setSelectedIndex(0);
 
-		JLabel lblPortaDisponvel = new JLabel("Porta Dispon\u00EDvel:");
+		JLabel lblPortaDisponvel = new JLabel("Porta Disponivel:");
 		lblPortaDisponvel.setBounds(276, 81, 103, 14);
 
 		txtPortaServidor = new JTextField();
