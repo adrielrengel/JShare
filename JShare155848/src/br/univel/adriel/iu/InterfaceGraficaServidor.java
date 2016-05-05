@@ -27,6 +27,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -82,15 +83,15 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 	 * Create the frame.
 	 */
 	public InterfaceGraficaServidor() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 571, 443);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 624, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 540, 28);
+		panel.setBounds(5, 5, 593, 28);
 		contentPane.add(panel);
 
 		JLabel lblServidorDeBusca = new JLabel("Servidor de busca de arquivos");
@@ -98,34 +99,31 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 		panel.add(lblServidorDeBusca);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(5, 44, 540, 33);
+		panel_1.setBounds(5, 44, 593, 38);
 		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 
 		JLabel lblIp = new JLabel("IP:");
+		lblIp.setBounds(10, 9, 14, 14);
 		lblIp.setVerticalAlignment(SwingConstants.BOTTOM);
 		panel_1.add(lblIp);
 
 		cbxIp = new JComboBox();
+		cbxIp.setBounds(34, 6, 111, 20);
 		panel_1.add(cbxIp);
 
 		JLabel lblPorta = new JLabel("Porta: ");
+		lblPorta.setBounds(176, 9, 47, 14);
 		panel_1.add(lblPorta);
 
 		txtPorta = new JTextField();
+		txtPorta.setBounds(221, 6, 61, 20);
 		txtPorta.setText("1818");
 		panel_1.add(txtPorta);
 		txtPorta.setColumns(10);
 
-		btnIniciarServidor = new JButton("Iniciar Servidor");
-		btnIniciarServidor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		
-
-			}
-
-		});
-		panel_1.add(btnIniciarServidor);
-
 		btnPararServidor = new JButton("Parar Servidor");
+		btnPararServidor.setBounds(448, 5, 145, 23);
 		btnPararServidor.setEnabled(false);
 		btnPararServidor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,12 +132,31 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 		});
 		panel_1.add(btnPararServidor);
 
-		List<String> lista = buscaIp();
+		List<String> lista = listaIP.buscarIp();
 		cbxIp.setModel(new DefaultComboBoxModel<String>(new Vector<String>(lista)));
 		cbxIp.setSelectedIndex(0);
+		
+				btnIniciarServidor = new JButton("Iniciar Servidor");
+				btnIniciarServidor.setBounds(292, 5, 146, 23);
+				panel_1.add(btnIniciarServidor);
+				btnIniciarServidor.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {		
+
+					}
+
+				});
+				
+				
+						btnIniciarServidor.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								iniciando();
+								flagInicioSevidor = 1;
+							}
+						});
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(5, 81, 540, 312);
+		panel_2.setBounds(5, 81, 593, 312);
 		contentPane.add(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 
@@ -147,26 +164,40 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 		panel_2.add(scrollPane, BorderLayout.CENTER);
 
 		txtArea = new JTextArea();
+		txtArea.setEditable(false);
 		txtArea.setLineWrap(true);
 		txtArea.setForeground(Color.WHITE);
 		txtArea.setFont(new Font("Consolas", Font.PLAIN, 15));
 		txtArea.setBackground(Color.BLACK);
 		scrollPane.setViewportView(txtArea);
 
-
-		btnIniciarServidor.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				iniciando();
-			}
-		});
-
 		btnPararServidor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				encerrarServidor();
+				flagInicioSevidor = 0;
 			}
 		});
+
+		addWindowListener(new WindowAdapter()  
+		{  
+			public void windowClosing (WindowEvent e)  
+			{  
+				//caixa de dialogo retorna um inteiro  
+				int resposta = JOptionPane.showConfirmDialog(null,"Deseja finalizar essa operação?","Finalizar",JOptionPane.YES_NO_OPTION);  
+
+				//sim = 0, nao = 1  
+				if (resposta == 0 && flagInicioSevidor  == 1)  
+				{  
+					encerrarServidor();                	
+					System.exit(0);
+
+				}  else {
+					System.exit(0);
+				}
+
+			}  
+		}); 
 
 	}
 
