@@ -280,25 +280,25 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 		return null;
 	}
 
-	@Override
-	public void desconectar(Cliente c) throws RemoteException {
-		
-		listaClientes.remove(c.getIp());		
-		escreverTela("Usuário " + c.getNome() + "saiu.");
 
+	@Override
+	public void desconectar(Cliente c) throws RemoteException {		
+
+		listaClientes.remove(c.getIp());	
+		for (Entry<Cliente, List<Arquivo>> listaProcura : listaArquivosCliente.entrySet()){
+			
+			if (listaProcura.getKey().getNome().equals(c.getNome())){
+				listaArquivosCliente.remove(listaProcura.getKey());
+			}
+		
+		}		
+
+		escreverTela("Usuário: " + c.getNome() + ", saiu.");
 	}
 
-
-	/**
-	 * ===================================================================================================
-	 * 
-	 * 						 Métodos responsáveis por iniciar e encerrar o servidor
-	 * 
-	 * ===================================================================================================
-	 */
-
+	
 	protected void iniciando() {
-		
+
 		String strPorta = txtPorta.getText().trim();
 		int intPorta = Integer.parseInt(strPorta);
 
