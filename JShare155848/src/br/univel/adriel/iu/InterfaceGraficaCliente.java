@@ -120,7 +120,7 @@ public class InterfaceGraficaCliente extends JFrame implements IServer {
 		lblNome.setBounds(32, 9, 39, 14);
 
 		txtNomeUsuario = new JTextField();
-		txtNomeUsuario.setText("Alex Tezza");
+		txtNomeUsuario.setText("HUGO");
 		txtNomeUsuario.setBounds(81, 6, 312, 20);
 		txtNomeUsuario.setColumns(10);
 
