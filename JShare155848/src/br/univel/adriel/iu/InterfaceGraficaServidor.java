@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -218,7 +219,8 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 	private IServer iServer;
 
 	private Registry registry;
-
+	
+	
 
 	/**
 	 * ===================================================================================================
@@ -228,10 +230,9 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 	 * ===================================================================================================
 	 */
 
-
 	@Override
 	public void registrarCliente(Cliente c) throws RemoteException {
-		
+
 		listaClientes.put(c.getIp(), c);
 		escreverTela("Novo usuário: " + c.getNome());
 
@@ -246,22 +247,33 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 
 	@Override
 	public Map<Cliente, List<Arquivo>> procurarArquivo(String nome) throws RemoteException {
+
+		Map<Cliente, List<Arquivo>> listaArquivosEncontrados = new HashMap<Cliente, List<Arquivo>>();
 		
-		// Percorrendo a HashMap principal.
-		for(Map.Entry<Cliente, List<Arquivo>> listaProcura: listaArquivosCliente.entrySet()) {
+		
+		for (Entry<Cliente, List<Arquivo>> listaProcura : listaArquivosCliente.entrySet()){
+		
+		
+			for (Arquivo arquivo : listaProcura.getValue()) {
 			
-			for(Arquivo arquivo: listaArquivosCliente.get(listaProcura.getKey())){
-				
-				System.out.println(arquivo.getNome());
-				System.out.println(arquivo.getTamanho());
+				if (arquivo.getNome().toLowerCase().contains(nome.toLowerCase())) {
+					List<Arquivo> listaArquivos = new ArrayList<Arquivo>();
+					Cliente novoCliente = new Cliente();
+
+					novoCliente.setNome(listaProcura.getKey().getNome());
+					novoCliente.setIp(listaProcura.getKey().getIp());
+					novoCliente.setPorta(listaProcura.getKey().getPorta());
+
+					listaArquivos.add(arquivo);
+
+					listaArquivosEncontrados.put(novoCliente, listaArquivos);
+
+				}
+
 			}
-			
 		}
-		
-		
 		return listaArquivosEncontrados;
 	}
-
 	@Override
 	public byte[] baixarArquivo(Arquivo arq) throws RemoteException {
 		// TODO Auto-generated method stub
