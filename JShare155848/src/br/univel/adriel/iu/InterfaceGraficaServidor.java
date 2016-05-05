@@ -56,6 +56,8 @@ public class InterfaceGraficaServidor extends JFrame implements IServer{
 	private JButton btnIniciarServidor;
 	private JComboBox cbxIp;
 	private JTextArea txtArea;
+	
+	int flagInicioSevidor = 0;
 
 	/**
 	 * Launch the application.
